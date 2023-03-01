@@ -20,8 +20,16 @@ const managerQuestions = [
 const engineerQuestions = [
   { type: "input", name: "name", message: "What is Engineer's name?" },
   { type: "input", name: "id", message: "What is Engineer's ID?" },
-  { type: "input", name: "email", message: "What is Engineer's email address?" },
-  { type: "input", name: "github", message: "What is Engineer's GitHub username?" },
+  {
+    type: "input",
+    name: "email",
+    message: "What is Engineer's email address?",
+  },
+  {
+    type: "input",
+    name: "github",
+    message: "What is Engineer's GitHub username?",
+  },
 ];
 //engineer’s name, ID, email, and GitHub username,
 
@@ -32,28 +40,52 @@ const internQuestions = [
   { type: "input", name: "school", message: "What is Intern's School name?" },
 ];
 
+const choicesArray = [
+  "Would you like to add engineer?",
+  "Would you like to add intern?",
+  "Would you like to finish your team building?",
+];
+
 const menuQuestions = [
   {
-    type: "input",
-    name: "choose an option",
+    type: "list",
+    name: "chosenOption",
     message: "Would you like to add another team member?",
-    choices: [
-      "Would you like to add engineer?",
-      "Would you like to add intern?",
-      "Would you like to finish your team building?",
-    ],
+    choices: choicesArray,
   },
 ];
 
 async function init() {
   const managerData = await inquirer.prompt(managerQuestions);
-  const engineerData = await inquirer.prompt(engineerQuestions);
-  const internData = await inquirer.prompt(internQuestions);
-  const menuData = await inquirer.prompt(menuQuestions);
-
-  console.log(managerData);
-  console.log(engineerData);
-  console.log(internData);
-  console.log(menuData);
+  const manager = new Manager(
+    managerData.name,
+    managerData.id,
+    managerData.email,
+    managerData.officeNumber
+  );
+  while (true) // while loop added to promt user infenetly to creat another team memebr until user dideced to finish team building 
+  {
+    const menuData = await inquirer.prompt(menuQuestions);
+    if (menuData.chosenOption == choicesArray[0]) {
+      const engineerData = await inquirer.prompt(engineerQuestions);
+      const engineer = new Engineer(
+        engineerData.name,
+        engineerData.id,
+        engineerData.email,
+        engineerData.officeNumber
+      );
+    } else if (menuData.chosenOption == choicesArray[1]) {
+      const internData = await inquirer.prompt(internQuestions);
+      const intern = new Intern(
+        internData.name,
+        internData.id,
+        internData.email,
+        internData.officeNumber
+      );
+    } else {
+      //end the program
+      return;
+    }
+  }
 }
 init();
