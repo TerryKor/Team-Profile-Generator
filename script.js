@@ -1,62 +1,29 @@
-class Employee {
-  constructor(name, id, email) {
-    this.name = name;
-    this.id = id;
-    this.email = email;
-  }
+const inquirer = require("inquirer");
+const Employee = require("Employee");
+const Engineer = require("Engineer");
+const Manager = require("Manager");
+const Intern = require("Intern");
 
-  getName() {
-    return this.name;
-  }
+const managerQuestions = [
+  { type: "input", name: "name", message: "What is your name?" },
+  { type: "input", name: "name", message: "What is your ID"},
+  {type: "input", name: "name", message: "What is your email address?"},
+  {type: "input", name: "name", message: "What is your office number?"}
+];
 
-  getId() {
-    return this.id;
-  }
-  getEmail() {
-    return this.email;
-  }
+//manager’s name, employee ID, email address, and office number
 
-  getRole() {
-    return "Employee";
-  }
-}
+const engineerQuestions = [
+  { type: "input", name: "name", message: "What is your name?" },
+  { type: "input", name: "name", message: "What is your ID"},
+  {type: "input", name: "name", message: "What is your email address?"},
+  {type: "input", name: "name", message: "What is your GitHub username?"}
+];
+//engineer’s name, ID, email, and GitHub username,
 
-class Manager extends Employee {
-  constructor(name, id, email, officeNumber) {
-    super(name, id, email);
-    this.officeNumber = officeNumber;
-  }
-
-  getRole() {
-    return "Manager";
-  }
-}
-
-class Engineer extends Employee {
-  constructor(name, id, email, gitHub) {
-    super(name, id, email);
-    this.gitHub = gitHub;
-  }
-
-  getGithub() {
-    return this.gitHub;
-  }
-
-  getRole() {
-    return "Engineer";
-  }
-}
-class Intern extends Employee {
-  constructor(name, id, email, school) {
-    super(name, id, email);
-    this.school = school;
-  }
-
-  getSchool() {
-    return this.school;
-  }
-
-  getRole() {
-    return "Intern";
-  }
-}
+const internQuestions = [
+  { type: "input", name: "name", message: "What is your name?" },
+  { type: "input", name: "name", message: "What is your ID"},
+  {type: "input", name: "name", message: "What is your email address?"},
+  {type: "input", name: "name", message: "What is your School name?"}
+];
