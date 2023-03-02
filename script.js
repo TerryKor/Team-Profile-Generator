@@ -1,4 +1,6 @@
+// importing modules
 const inquirer = require("inquirer");
+const fs = require("fs");
 const Employee = require("./lib/Employee.js");
 const Engineer = require("./lib/Engineer.js");
 const Manager = require("./lib/Manager.js");
@@ -63,6 +65,13 @@ async function init() {
     managerData.email,
     managerData.officeNumber
   );
+
+
+
+
+
+
+
   while (true) // while loop added to promt user infenetly to creat another team memebr until user dideced to finish team building 
   {
     const menuData = await inquirer.prompt(menuQuestions);
@@ -89,3 +98,28 @@ async function init() {
   }
 }
 init();
+
+// fs.writeFile("sampleOfGeneratedREADME.md", readmeCallBack, (err) =>
+//       err ? console.log(err) : console.log("Success!")
+//);
+
+
+
+
+function addManagerToHTML(manager){
+  let draftOFHTML  = ""
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // fs.writeFile("index.html", )
+}
