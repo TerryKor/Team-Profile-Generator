@@ -46,11 +46,11 @@ h1 {
   font-size: larger;
 }
 
-.dataContainer {
-  background-color: rgb(233, 228, 228);
-}
 
 .dataInfo {
+  overflow-y: clip;
+  word-wrap: break-word;
+  background-color: rgb(233, 228, 228);
   margin: 0px 10px;
   align-self: center;
   display: flex;
