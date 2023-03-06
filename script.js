@@ -5,6 +5,7 @@ const Employee = require("./lib/Employee.js");
 const Engineer = require("./lib/Engineer.js");
 const Manager = require("./lib/Manager.js");
 const Intern = require("./lib/Intern.js");
+const Template = require("./src/template.js");
 
 // let mainDataContainerEl = document.getElementById("mainDataContainer");
 
@@ -60,6 +61,7 @@ const menuQuestions = [
 ];
 
 async function init() {
+  var template = new Template()
   const managerData = await inquirer.prompt(managerQuestions);
   const manager = new Manager(
     managerData.name,
@@ -68,8 +70,8 @@ async function init() {
     managerData.officeNumber
   );
 
-  var draftofWholeData = draftOfManager(manager);
-
+  var draftofWholeData = template.draftOfManager(manager);
+  // created flag variable to control while loop, if user selects stop team building while loop will finish
   var flag = true;
   while (flag) {
     // while loop added to promt user infenetly to creat another team memebr until user dideced to finish team building
@@ -83,7 +85,7 @@ async function init() {
         engineerData.github
       );
       //saving all data and appending to engineer variable
-      draftofWholeData += draftOfEngineer(engineer);
+      draftofWholeData += template.draftOfEngineer(engineer);
     } else if (menuData.chosenOption == choicesArray[1]) {
       const internData = await inquirer.prompt(internQuestions);
       const intern = new Intern(
@@ -93,120 +95,15 @@ async function init() {
         internData.school
       );
       //saving all data and appending to intern variable
-      draftofWholeData += draftOfIntern(intern);
+      draftofWholeData += template.draftOfIntern(intern);
     } else {
-      //end the program
+      //stop while loop
       flag = false;
     }
   }
 
-  addData(draftofWholeData);
+  template.addData(draftofWholeData);
 }
+
 init();
 
-// fs.writeFile("sampleOfGeneratedREADME.md", readmeCallBack, (err) =>
-//       err ? console.log(err) : console.log("Success!")
-//);
-
-
-function draftOfManager(manager) {
-  let managerHTML = `
-  <div class="manager memberTile">
-  <div class="tileHeader">
-    <div class="name">${manager.getName()}</div>
-    <div class="position">
-      <img
-        src="./images/icons8-coffee-48 (1).png"
-        alt="coffee cup image"
-      />
-      ${manager.getRole()}
-    </div>
-  </div>
-  <div class="dataInfo">
-    <div class="information">ID: ${manager.getId()}</div>
-    <div class="information">Email: ${manager.getEmail()}</div>
-    <div class="information">Office No.: ${manager.getOfficeNumber()}</div>
-  </div>
-</div>
-  `;
-
-  return managerHTML;
-}
-
-function draftOfEngineer(engineer) {
-  let engineerHTML = `
- <div class="engineer memberTile">
- <div class="tileHeader">
-   <div class="name">${engineer.getName()}</div>
-   <div class="position">
-     <img src="./images/icons8-glasses-48.png" alt="glasses image" />
-     ${engineer.getRole()}
-   </div>
- </div>
- <div class="dataInfo">
-   <div class="information">ID: ${engineer.getId()}</div>
-   <div class="information">Email: ${engineer.getEmail()}</div>
-   <div class="information">GitHub: ${engineer.getGithub()}</div>
- </div>
-</div>
-  `;
-
-  return engineerHTML;
-}
-
-function draftOfIntern(intern) {
-  let internHTML = `
-<div class="intern memberTile">
-        <div class="tileHeader">
-          <div class="name">${intern.getName()}</div>
-          <div class="position">
-            <img
-              src="./images/icons8-graduation-cap-48.png"
-              alt="graduate image"
-            />
-            ${intern.getRole()}
-          </div>
-        </div>
-
-        <div class="dataInfo">
-          <div class="information">ID:${intern.getId()}</div>
-          <div class="information">Email:${intern.getEmail()}</div>
-          <div class="information">School:${intern.getSchool()}</div>
-        </div>
-      </div>
-`;
-  return internHTML;
-}
-
-function addData(draftofWholeData) {
-  let draftOfHTML = `
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>Team Builder</title>
-  </head>
-  <body>
-    <header class="topContainer">
-      <h1>My Team</h1>
-    </header>
-
-    <div class="container" id="mainDataContainer">
-${draftofWholeData}
-    </div>
-  </body>
-</html>
-`;
-
-  fs.writeFile("index.html", draftOfHTML, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("done");
-    }
-  });
-}
