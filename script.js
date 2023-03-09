@@ -4,7 +4,7 @@ const Engineer = require("./lib/Engineer.js");
 const Manager = require("./lib/Manager.js");
 const Intern = require("./lib/Intern.js");
 const Template = require("./src/template.js");
-// questions arrayfor user`s to input manager`s data
+// questions array for user`s to input manager`s data
 const managerQuestions = [
   { type: "input", name: "name", message: "What is Manager's name?" },
   { type: "input", name: "id", message: "What is Manager's ID?" },
@@ -16,7 +16,7 @@ const managerQuestions = [
   },
 ];
 
-// questions arrayfor user`s to input engineer`s data
+// questions array for user`s to input engineer`s data
 
 const engineerQuestions = [
   { type: "input", name: "name", message: "What is Engineer's name?" },
@@ -32,7 +32,7 @@ const engineerQuestions = [
     message: "What is Engineer's GitHub username?",
   },
 ];
-// questions arrayfor user`s to input intern`s data
+// questions array for user`s to input intern`s data
 
 const internQuestions = [
   { type: "input", name: "name", message: "What is Intern's name?" },
