@@ -4,9 +4,7 @@ const Engineer = require("./lib/Engineer.js");
 const Manager = require("./lib/Manager.js");
 const Intern = require("./lib/Intern.js");
 const Template = require("./src/template.js");
-
-// let mainDataContainerEl = document.getElementById("mainDataContainer");
-
+// questions arrayfor user`s to input manager`s data
 const managerQuestions = [
   { type: "input", name: "name", message: "What is Manager's name?" },
   { type: "input", name: "id", message: "What is Manager's ID?" },
@@ -18,7 +16,7 @@ const managerQuestions = [
   },
 ];
 
-//manager’s name, employee ID, email address, and office number
+// questions arrayfor user`s to input engineer`s data
 
 const engineerQuestions = [
   { type: "input", name: "name", message: "What is Engineer's name?" },
@@ -34,7 +32,7 @@ const engineerQuestions = [
     message: "What is Engineer's GitHub username?",
   },
 ];
-//engineer’s name, ID, email, and GitHub username,
+// questions arrayfor user`s to input intern`s data
 
 const internQuestions = [
   { type: "input", name: "name", message: "What is Intern's name?" },
@@ -57,7 +55,7 @@ const menuQuestions = [
     choices: choicesArray,
   },
 ];
-
+// function waits till all data is gathered then data is used
 async function init() {
   var template = new Template()
   const managerData = await inquirer.prompt(managerQuestions);
@@ -72,7 +70,7 @@ async function init() {
   // created flag variable to control while loop, if user selects stop team building while loop will finish
   var flag = true;
   while (flag) {
-    // while loop added to promt user infenetly to creat another team memebr until user dideced to finish team building
+    // while loop added to promt user infinitly to creat another team memebr until user dideced to finish team building
     const menuData = await inquirer.prompt(menuQuestions);
     if (menuData.chosenOption == choicesArray[0]) {
       const engineerData = await inquirer.prompt(engineerQuestions);

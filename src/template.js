@@ -1,6 +1,6 @@
 const fs = require("fs");
-
 class Template {
+  //creating draft of html code for manager
   draftOfManager(manager) {
     let managerHTML = `
     <div class="manager memberTile">
@@ -26,7 +26,7 @@ class Template {
 
     return managerHTML;
   }
-
+//creating draft of html code for engineer
   draftOfEngineer(engineer) {
     let engineerHTML = `
    <div class="engineer memberTile">
@@ -53,7 +53,7 @@ class Template {
 
     return engineerHTML;
   }
-
+//creating draft of html code for intern
   draftOfIntern(intern) {
     let internHTML = `
   <div class="intern memberTile">
@@ -103,12 +103,12 @@ class Template {
     </body>
   </html>
   `;
-
+// tamplate function to write to index.html file in dist folder
     fs.writeFile("./dist/index.html", draftOfHTML, (err) => {
       if (err) {
         console.log(err);
       } else {
-        console.log("done");
+        console.log("Team has been scuccesfully generated, please refer to index.html in `dist` folder");
       }
     });
   }
