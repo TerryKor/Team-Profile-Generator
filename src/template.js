@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 class Template {
   draftOfManager(manager) {
     let managerHTML = `
